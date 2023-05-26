@@ -1,24 +1,58 @@
-import { TextInput, View, StyleSheet } from 'react-native';
-import PrimaryButton from '../components/PrimaryButton';
+import { useState } from 'react';
+import { TextInput, View, StyleSheet, Alert } from 'react-native';
+import Title from '../components/ui/Title';
+import Card from '../components/ui/Card';
+import PrimaryButton from '../components/ui/PrimaryButton';
+import Colors from '../constants/colors';
+import InstructionText from '../components/ui/InstructionText';
 
-const StartGameScreen = () => {
+const StartGameScreen = ({ onPickNumber }) => {
+    const [enteredNumber, setEnteredNumber] = useState('');
+
+    const numberInputHandler = enteredText => {
+        setEnteredNumber(enteredText);
+    };
+
+    const resetInputHandler = () => {
+        setEnteredNumber('');
+    };
+
+    const confirmInputHandler = () => {
+        const chosenNumber = parseInt(enteredNumber);
+
+        if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
+            Alert.alert('유효하지 않은 숫자입니다.', '1~99 사이의 값을 입력해주세요.', [
+                { text: '확인', style: 'destructive', onPress: resetInputHandler },
+            ]);
+            return;
+        }
+
+        onPickNumber(chosenNumber);
+    };
+
     return (
-        <View style={styles.inputContainer}>
-            <TextInput
-                style={styles.numberInput}
-                maxLength={2}
-                keyboardType="number-pad" //키보드 패드의 종류를 지정 (number-pad: 숫자패드만 나옴)
-                autoCapitalize="none" //영어 입력 시 자동으로 대문자로 바꿔주는 기능
-                autoCorrect={false} //문자 입력 시 자동 수정을 해주는 기능
-            />
-            <View style={styles.buttonsContainer}>
-                <View style={styles.buttonContainer}>
-                    <PrimaryButton>리셋</PrimaryButton>
+        <View style={styles.rootContainer}>
+            <Title>Guess My Number</Title>
+            <Card>
+                <InstructionText style={styles.instructionText}>숫자를 입력해주세요</InstructionText>
+                <TextInput
+                    style={styles.numberInput}
+                    maxLength={2}
+                    keyboardType="number-pad" //키보드 패드의 종류를 지정 (number-pad: 숫자패드만 나옴)
+                    autoCapitalize="none" //영어 입력 시 자동으로 대문자로 바꿔주는 기능
+                    autoCorrect={false} //문자 입력 시 자동 수정을 해주는 기능
+                    value={enteredNumber}
+                    onChangeText={numberInputHandler}
+                />
+                <View style={styles.buttonsContainer}>
+                    <View style={styles.buttonContainer}>
+                        <PrimaryButton onPress={resetInputHandler}>리셋</PrimaryButton>
+                    </View>
+                    <View style={styles.buttonContainer}>
+                        <PrimaryButton onPress={confirmInputHandler}>확인</PrimaryButton>
+                    </View>
                 </View>
-                <View style={styles.buttonContainer}>
-                    <PrimaryButton>확인</PrimaryButton>
-                </View>
-            </View>
+            </Card>
         </View>
     );
 };
@@ -26,28 +60,20 @@ const StartGameScreen = () => {
 export default StartGameScreen;
 
 const styles = StyleSheet.create({
-    inputContainer: {
+    rootContainer: {
+        flex: 1,
         marginTop: 100,
-        marginHorizontal: 24,
         alignItems: 'center',
-        backgroundColor: '#4e0329',
-        padding: 16,
-        borderRadius: 8,
-        elevation: 4,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowRadius: 10,
-        shadowOpacity: 0.25,
     },
     numberInput: {
         width: 50,
         height: 50,
         marginVertical: 8,
         borderBottomWidth: 2,
-        borderBottomColor: '#ddb52f',
+        borderBottomColor: Colors.boxText500,
         fontSize: 32,
         fontWeight: 'bold',
-        color: '#ddb52f',
+        color: Colors.boxText500,
         textAlign: 'center',
     },
     buttonsContainer: {
