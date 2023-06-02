@@ -24,8 +24,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     numberText: {
+        fontFamily: 'open-sans-bold',
         fontSize: 36,
-        fontWeight: 'bold',
+        // fontWeight: 'bold',
         color: Colors.boxColor400,
     },
 });

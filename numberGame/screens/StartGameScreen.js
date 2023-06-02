@@ -34,7 +34,8 @@ const StartGameScreen = ({ onPickNumber }) => {
         <View style={styles.rootContainer}>
             <Title>Guess My Number</Title>
             <Card>
-                <InstructionText style={styles.instructionText}>숫자를 입력해주세요</InstructionText>
+                {/* <InstructionText style={styles.instructionText}>숫자를 입력해주세요</InstructionText> */}
+                <InstructionText style={styles.instructionText}>Enter a number</InstructionText>
                 <TextInput
                     style={styles.numberInput}
                     maxLength={2}
