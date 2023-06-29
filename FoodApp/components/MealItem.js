@@ -1,21 +1,30 @@
 import React from 'react';
 import { Image, Pressable, StyleSheet, Text, View, Platform } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import Card from '../ui/Card';
+import MealDetails from './MealDetails';
 
-const MealItem = ({ title, imageUrl, duration, complexity, affordability }) => {
+const MealItem = ({ id, title, imageUrl, duration, complexity, affordability }) => {
+    const navigation = useNavigation();
+
+    const selectMealItemHandler = () => {
+        navigation.navigate('MealDetail', {
+            mealId: id,
+        });
+    };
+
     return (
         <Card>
-            <Pressable android_ripple={{ color: '#e5e5e5' }} style={({ pressed }) => pressed && styles.buttonPressed}>
+            <Pressable
+                android_ripple={{ color: '#e5e5e5' }}
+                style={({ pressed }) => pressed && styles.buttonPressed}
+                onPress={selectMealItemHandler}>
                 <View style={styles.innerContainer}>
                     <View>
                         <Image source={{ uri: imageUrl }} style={styles.image} />
                         <Text style={styles.title}>{title}</Text>
                     </View>
-                    <View style={styles.details}>
-                        <Text style={styles.detail}>{duration}m</Text>
-                        <Text style={styles.detail}>{complexity.toUpperCase()}</Text>
-                        <Text style={styles.detail}>{affordability.toUpperCase()}</Text>
-                    </View>
+                    <MealDetails duration={duration} complexity={complexity} affordability={affordability} />
                 </View>
             </Pressable>
         </Card>
@@ -41,15 +50,5 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 18,
         margin: 8,
-    },
-    details: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 8,
-    },
-    detail: {
-        marginHorizontal: 4,
-        fontSize: 12,
     },
 });

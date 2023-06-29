@@ -1,17 +1,27 @@
 import Category from '../models/category';
 import Meal from '../models/meal';
+import italianFood from '../assets/image/italianFood.jpg';
+import quickAndEasyFood from '../assets/image/quickAndEasyFood.jpg';
+import hamburgerFood from '../assets/image/hamburgerFood.jpg';
+import germanFood from '../assets/image/germanFood.jpg';
+import lightAndLovelyFood from '../assets/image/lightAndLovelyFood.jpg';
+import exoticFood from '../assets/image/exoticFood.jpg';
+import breakfastFood from '../assets/image/breakfastFood.jpg';
+import AsianFood from '../assets/image/AsianFood.jpg';
+import frenchFood from '../assets/image/frenchFood.jpg';
+import summerFood from '../assets/image/summerFood.jpg';
 
 export const CATEGORIES = [
-    new Category('c1', 'Italian', '#f5428d', 'hsl(335, 90%, 71%)'), //{id: c1, title: Italian, color: #f5428d}
-    new Category('c2', 'Quick & Easy', '#f54242', 'hsl(0, 90%, 71%)'),
-    new Category('c3', 'Hamburgers', '#f5a442', 'hsl(33, 90%, 51%)'),
-    new Category('c4', 'German', '#f5d142', 'hsl(48, 90%, 51%)'),
-    new Category('c5', 'Light & Lovely', '#368dff', 'hsl(214, 100%, 71%)'),
-    new Category('c6', 'Exotic', '#41d95d', 'hsl(131, 67%, 55%)'),
-    new Category('c7', 'Breakfast', '#9eecff', 'hsl(192, 100%, 56%)'),
-    new Category('c8', 'Asian', '#b9ffb0', 'hsl(113, 100%, 50%)'),
-    new Category('c9', 'French', '#ffc7ff', 'hsl(300, 100%, 64%)'),
-    new Category('c10', 'Summer', '#47fced', 'hsl(175, 97%, 43%)'),
+    new Category('c1', 'Italian', '#f5428d', 'hsl(335, 90%, 71%)', italianFood), //{id: c1, title: Italian, color: #f5428d}
+    new Category('c2', 'Quick & Easy', '#f54242', 'hsl(0, 90%, 71%)', quickAndEasyFood),
+    new Category('c3', 'Hamburgers', '#f5a442', 'hsl(33, 90%, 51%)', hamburgerFood),
+    new Category('c4', 'German', '#f5d142', 'hsl(48, 90%, 51%)', germanFood),
+    new Category('c5', 'Light & Lovely', '#368dff', 'hsl(214, 100%, 71%)', lightAndLovelyFood),
+    new Category('c6', 'Exotic', '#41d95d', 'hsl(131, 67%, 55%)', exoticFood),
+    new Category('c7', 'Breakfast', '#9eecff', 'hsl(192, 100%, 56%)', breakfastFood),
+    new Category('c8', 'Asian', '#b9ffb0', 'hsl(113, 100%, 50%)', AsianFood),
+    new Category('c9', 'French', '#ffc7ff', 'hsl(300, 100%, 64%)', frenchFood),
+    new Category('c10', 'Summer', '#47fced', 'hsl(175, 97%, 43%)', summerFood),
 ];
 
 export const MEALS = [

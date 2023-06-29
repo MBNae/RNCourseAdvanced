@@ -15,6 +15,7 @@ const CategoriesScreen = ({ navigation }) => {
                 title={itemData.item.title}
                 color={itemData.item.color}
                 colorOver={itemData.item.colorOver}
+                menuImage={itemData.item.menuImage}
                 onPress={pressHandler}
             />
         );
